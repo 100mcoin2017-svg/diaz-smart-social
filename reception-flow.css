@@ -1,0 +1,13 @@
+/* El recorrido es la navegación principal; el directorio queda como consulta. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.journey-steps{position:relative;z-index:4;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:16px;background:#102036;border-top:1px solid var(--line)}
+.journey-steps button{min-height:52px;border:1px solid var(--line);border-radius:10px;background:#162a42;color:var(--muted);font-size:12px;padding:10px;text-align:left;line-height:1.5}
+.journey-steps button[aria-current=step]{background:#8ac8ff;color:#102a46;border-color:#8ac8ff;font-weight:600}
+.studio-layout .explorer{bottom:102px}
+.explorer #demoProgress{margin-bottom:20px}.explorer .demo-progress-heading{margin-top:0}.explorer h4{font-size:27px}.explorer #demoNarrative{font-size:13px;line-height:1.8}
+.explorer .sample-output{grid-template-columns:1fr;gap:15px;padding:20px 0 0;margin-top:18px}.explorer .sample-output h3{font-size:22px}.explorer .sample-document{padding:15px;min-width:0}.explorer .sample-document pre{font-size:12px;overflow-wrap:anywhere}
+#teamSequence{margin-top:20px;padding:15px;border:1px solid #8ac8ff44;border-radius:12px;background:#8ac8ff09}#teamHandoff{font-size:13px;color:#bce4ff}.demo-controls{flex-wrap:wrap}.demo-controls button:disabled{color:var(--muted)}
+.room-shortcuts{justify-content:flex-start;gap:8px}.room-shortcuts::before{content:'DEPARTAMENTOS';align-self:center;font-size:9px;letter-spacing:.1em;color:var(--muted);margin-right:12px}
+#fallbackFlow{padding:12px;top:25%;bottom:23%;font-size:11px}#fallbackFlow svg{display:block;width:100%;max-height:200px;margin-bottom:10px}#fallbackFlow[data-step="0"] .fallback-park,#fallbackFlow[data-step="4"] .fallback-park,#fallbackFlow[data-step="1"] .fallback-reception,#fallbackFlow[data-step="2"] .fallback-office,#fallbackFlow[data-step="3"] .fallback-office{fill:#3173a6;stroke-width:3}
+@media(max-width:860px){.studio-layout .explorer{position:relative;inset:auto}.journey-steps{grid-template-columns:repeat(3,minmax(0,1fr));padding:12px;gap:6px}.journey-steps button{font-size:11px;padding:8px}.studio-layout .scene-caption{right:15px}.studio-layout .scene-caption b{max-width:38ch;font-size:11px}.render-fallback{inset:30% 18% 20%;overflow:auto}.scene-tip{max-width:calc(100% - 24px);white-space:normal;text-align:center}}
+@media(max-width:380px){.journey-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}

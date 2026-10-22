@@ -1,0 +1,6 @@
+/* Complete original artwork, including lettering and slogan. No HTML replacement wordmark. */
+.official-brand img.original-logo,.site-header .brand-logo.original-logo,footer .brand-logo.original-logo{display:block;width:auto;height:104px;max-width:min(294px,70vw);object-fit:contain;background:transparent}
+.site-header{height:auto;min-height:128px;padding-block:8px}.topline{min-height:128px}.brand.official-brand{gap:0}.brand.official-brand::before{display:none}
+footer .brand-logo.original-logo{width:auto;height:100px;max-width:100%}
+.ofc-brand img.original-logo,.public-scene-dock .dock-brand-image.original-logo{width:44px;height:47px;object-fit:contain}.ofc-brand{margin-bottom:14px}
+@media(max-width:860px){.official-brand img.original-logo,.site-header .brand-logo.original-logo{width:auto;height:72px}.site-header,.topline{min-height:96px}.site-header{padding-block:8px}.public-scene-dock .dock-brand-image.original-logo{width:34px;height:37px}}
