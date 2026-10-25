@@ -15,3 +15,6 @@ dialog{width:min(440px,calc(100% - 32px));border:1px solid var(--line);border-ra
 .agent-duty{color:var(--text,#eaf4ff);font-size:15px;line-height:1.55;margin:16px 0 0;font-weight:600}
 .agent-duty:empty{display:none}
 .agent-duty+.agent-explanation{margin-top:12px}
+#experiencia .room-shortcuts::before{content:'ÁREAS'}
+.explorer-more{display:none;min-height:44px;width:100%;padding:10px 12px;margin-bottom:8px;text-align:left;border:1px solid var(--line);border-radius:8px;background:#ffffff08;color:var(--lime);font-size:12px}
+@media(max-width:480px){.explorer-more{display:block}}

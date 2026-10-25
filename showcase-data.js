@@ -3,6 +3,9 @@ window.AGENCY_PUBLIC = {
   name: "Díaz Smart Social",
   whatsapp: "",
   email: "",
+  metricsUrl: "",
+  mostrarPrecio: false,
+  pruebaSemana: false,
   agents: [
   {
     "id": "director_general",

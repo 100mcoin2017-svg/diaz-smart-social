@@ -4,3 +4,5 @@
 footer .brand-logo.original-logo{width:auto;height:100px;max-width:100%}
 .ofc-brand img.original-logo,.public-scene-dock .dock-brand-image.original-logo{width:44px;height:47px;object-fit:contain}.ofc-brand{margin-bottom:14px}
 @media(max-width:860px){.official-brand img.original-logo,.site-header .brand-logo.original-logo{width:auto;height:72px}.site-header,.topline{min-height:96px}.site-header{padding-block:8px}.public-scene-dock .dock-brand-image.original-logo{width:34px;height:37px}}
+/* Barra horizontal (<=860px): el logo mide y se centra como el botón Tema del otro extremo. */
+@media(max-width:860px){.ofc-brand{margin:0 auto 0 0;align-self:center;display:flex;align-items:center;justify-content:center;width:40px;height:40px}.ofc-brand img.original-logo{width:36px;height:36px}}
