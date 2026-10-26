@@ -2,13 +2,13 @@ import {Studio3D,STUDIOS,studioFor} from './studio-3d.js?v=robots7';
 const $=s=>document.querySelector(s), data=window.AGENCY_PUBLIC, agents=data.agents;
 const normalize=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const publicName=s=>s.replace(/ADN de Marca/gi,'Marca');
-let viewer=null, roomFilter=null, selectedAgent=null, goal='contenido', demo=null, preparedBrief='';
-const TRACK_EVENTS=new Set(['seccion_vista','scroll_50','scroll_90','tiempo_30s','tiempo_60s','clic_cta','demo_oficina_abierta','resumen_preparado','resumen_descargado','pelicula_inicio','servicio_tocado','momento_alcanzado','pelicula_completada','pelicula_repetida','pelicula_saltada','equipo_abierto']);
+let viewer=null, roomFilter=null, selectedAgent=null, goal='contenido', demo=null;
+const TRACK_EVENTS=new Set(['seccion_vista','scroll_50','scroll_90','tiempo_30s','tiempo_60s','clic_cta','demo_oficina_abierta','pelicula_inicio','servicio_tocado','momento_alcanzado','pelicula_completada','pelicula_repetida','pelicula_saltada','equipo_abierto']);
 function track(evento,detalle={}){
  if(!TRACK_EVENTS.has(evento))return;
  const safe={};
  if(evento==='seccion_vista'&&/^(inicio|recibes|entrega|metodo|experiencia|nosotros|preguntas|contacto)$/.test(detalle.seccion))safe.seccion=detalle.seccion;
- if(evento==='clic_cta'&&['header','hero','cierre','pelicula'].includes(detalle.donde))safe.donde=detalle.donde;
+ if(evento==='clic_cta'&&['header','hero','cierre','pelicula','setter'].includes(detalle.donde))safe.donde=detalle.donde;
  if(typeof detalle.servicio==='string'&&SERVICIOS.some(s=>s.id===detalle.servicio))safe.servicio=detalle.servicio;
  if(evento==='momento_alcanzado'&&Number.isInteger(detalle.momento)&&detalle.momento>=1&&detalle.momento<=5)safe.momento=detalle.momento;
  if(evento==='pelicula_inicio'&&['auto','click'].includes(detalle.origen))safe.origen=detalle.origen;
@@ -23,8 +23,8 @@ if('IntersectionObserver' in window){const observer=new IntersectionObserver(ent
 let scroll50=false,scroll90=false;
 window.addEventListener('scroll',()=>{const total=document.documentElement.scrollHeight-innerHeight;if(total<=0)return;const fraction=scrollY/total;if(fraction>=.5&&!scroll50){scroll50=true;track('scroll_50');}if(fraction>=.9&&!scroll90){scroll90=true;track('scroll_90');}},{passive:true});
 setTimeout(()=>track('tiempo_30s'),30000);setTimeout(()=>track('tiempo_60s'),60000);
-const phone=/^\d{8,15}$/.test(data.whatsapp)?data.whatsapp:'';
 document.querySelectorAll('.public-cta').forEach(link=>link.addEventListener('click',()=>track('clic_cta',{donde:link.dataset.cta})));
+document.querySelectorAll('[data-mobile-toggle]').forEach(button=>button.addEventListener('click',()=>{const content=$('#'+button.dataset.mobileToggle),open=!button.hasAttribute('data-open');button.toggleAttribute('data-open',open);button.setAttribute('aria-expanded',String(open));content?.classList.toggle('is-open',open);button.querySelector('span').textContent=open?button.dataset.closeLabel:button.dataset.openLabel;button.querySelector('b').textContent=open?'−':'+';}));
 $('#priceOption').hidden=data.mostrarPrecio!==true;$('#trialOption').hidden=data.pruebaSemana!==true;
 const deliveryTabs=['script','carousel','telegram'];
 function deliveryTab(name){for(const id of deliveryTabs){const active=name===id;$('#'+id+'Tab').setAttribute('aria-selected',String(active));$('#'+id+'Tab').tabIndex=active?0:-1;$('#'+id+'Panel').hidden=!active;}}
@@ -159,13 +159,21 @@ const filmObserver=new IntersectionObserver(entries=>{filmVisible=entries[0].isI
 filmObserver.observe($('#experiencia'));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopTimer();else if(filmVisible&&filmState==='PLAYING'&&!filmPause&&!filmTimer)filmTimer=setTimeout(advance,2900);});
 
-// Formulario local: preparar y descargar no equivale a enviar a la agencia.
-const email=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)?data.email:'';
-if(phone||email)$('#contactNote').textContent='Primero revisas tu resumen. Después decides si quieres compartirlo por el canal de contacto.';
-$('#briefForm').addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const fields=new FormData(form);preparedBrief=`RESUMEN INICIAL\n\nNegocio: ${String(fields.get('business')).trim()}\nObjetivo: ${fields.get('goal')}\nContexto: ${String(fields.get('context')).trim()}\n`;
- $('#briefActions').hidden=false;$('#formStatus').textContent='Tu resumen está preparado. Todavía no se ha enviado.';track('resumen_preparado');$('#briefActions').scrollIntoView({block:'nearest',behavior:'smooth'});
- if(phone||email){const a=$('#sendBrief');a.hidden=false;a.textContent=phone?'Continuar por WhatsApp ↗':'Continuar por correo ↗';a.href=phone?`https://wa.me/${phone}?text=${encodeURIComponent(preparedBrief)}`:`mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Resumen inicial')}&body=${encodeURIComponent(preparedBrief)}`;}
-});
-$('#briefForm').addEventListener('input',()=>{preparedBrief='';$('#briefActions').hidden=true;$('#formStatus').textContent='';});
-$('#openBot').onclick=()=>{track('telegram_abierto');};
-$('#copyBrief').onclick=async()=>{if(!preparedBrief)return;try{await navigator.clipboard.writeText(preparedBrief);$('#formStatus').textContent='Resumen copiado. Puedes compartirlo por el canal que prefieras.';}catch{$('#formStatus').textContent='No fue posible copiar. Selecciona el texto y cópialo a mano.';}};
+const setterForm=$('#setterContactForm');
+const setterCountry=$('#setterCountry'),setterCountryFlag=$('#setterCountryFlag'),setterCountryCode=$('#setterCountryCode'),countryPicker=$('.country-picker');
+countryPicker?.addEventListener('click',e=>{const option=e.target.closest('[data-country-code]');if(!option)return;const code=option.dataset.countryCode;setterCountry.value=code;setterCountryFlag.dataset.country=code;setterCountryCode.textContent=`+${code}`;countryPicker.querySelectorAll('[data-country-code]').forEach(item=>item.setAttribute('aria-pressed',String(item===option)));countryPicker.open=false;$('#setterContactStatus').textContent='';});
+setterForm?.addEventListener('input',e=>{if(e.target.matches('input'))e.target.setCustomValidity('');$('#setterContactStatus').textContent='';});
+setterForm?.addEventListener('submit',e=>{e.preventDefault();const name=$('#setterName').value.trim(),phone=$('#setterPhone'),country=$('#setterCountry'),countryDigits=country.value,localDigits=phone.value.replace(/\D/g,'').replace(/^0+/,'').replace(new RegExp(`^${countryDigits}(?=\\d{7,}$)`),''),digits=`${countryDigits}${localDigits}`;if(digits.length<8||digits.length>15){phone.setCustomValidity('Escribe un número válido. El código de país ya está seleccionado.');phone.reportValidity();return;}const safeName=name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/gi,'_').replace(/^_+|_+$/g,'').slice(0,32);if(safeName.length<2){$('#setterName').setCustomValidity('Escribe tu nombre o el de tu negocio.');$('#setterName').reportValidity();return;}const start=`web_${digits}_${safeName}`.slice(0,64),link=document.createElement('a');link.href=`https://t.me/DiazSmartSocialIA_bot?start=${start}`;link.target='_blank';link.rel='noopener noreferrer';track('clic_cta',{donde:'setter'});link.click();$('#setterContactStatus').textContent='Telegram se abrió. Tu contacto se crea cuando toques «Iniciar».';});
+
+
+// Panel lateral: todo cerrado al inicio; un clic abre la sección, otro clic la cierra; los enlaces #recibes/#entrega/#experiencia abren su pestaña.
+(()=>{const box=document.getElementById('panelSecciones');if(!box)return;
+const tabs=[...box.querySelectorAll('[data-tab]')],panels=tabs.map(t=>document.getElementById(t.dataset.tab));
+function show(id,scroll){if(id!==null&&!panels.some(p=>p&&p.id===id))return false;
+tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.tab===id)));
+panels.forEach(p=>{p.hidden=p.id!==id});
+window.dispatchEvent(new Event('resize'));
+if(scroll)box.scrollIntoView({behavior:'smooth',block:'start'});return true}
+tabs.forEach(t=>t.addEventListener('click',()=>{const abierto=t.getAttribute('aria-selected')==='true';show(abierto?null:t.dataset.tab,false);try{track('panel_'+t.dataset.tab)}catch(e){}}));
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;if(show(a.getAttribute('href').slice(1),true))e.preventDefault()});
+const h=location.hash.slice(1);show(panels.some(p=>p&&p.id===h)?h:null,false)})();

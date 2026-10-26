@@ -328,3 +328,63 @@ body{background-image:radial-gradient(ellipse 900px 600px at 90% 4%,#1749833b,tr
 .experience .studio-agent-tooltip[hidden]{display:none}
 .experience .studio-agent-tooltip strong{font-size:11px;font-weight:650;line-height:1.3}
 @media(pointer:coarse){.experience .studio-agent-tooltip{display:none!important}}
+
+/* Contacto real: la web entrega el prospecto al Setter de Telegram. */
+.contact-setter{align-items:start;column-gap:70px;row-gap:24px;padding:34px 44px;background:radial-gradient(circle at 84% 15%,#64bcff24,transparent 34%),radial-gradient(ellipse at 0 0,#203e66,transparent 80%),#102742}
+.contact-setter h2{max-width:10ch}
+.contact-setter-intro{display:grid;grid-template-columns:minmax(190px,.82fr) minmax(240px,1.18fr);column-gap:28px;align-items:start}.contact-setter-intro>.eyebrow,.contact-setter-intro>.setter-contact-form{grid-column:1/-1}.contact-setter-intro h2{margin:14px 0 0}.contact-setter-message{padding-top:15px}.contact-setter-message p{margin:0}.contact-setter-message .contact-note{margin-top:18px}
+.contact-setter-card{align-self:start;display:grid;grid-template-columns:minmax(130px,160px) minmax(0,1fr);gap:18px;align-items:center;margin-top:38px;padding:18px;border:1px solid #9ed5ff38;border-radius:18px;background:#071a31a8;box-shadow:0 24px 70px #020a1766}
+.contact-qr{position:relative;display:grid;place-items:center;padding:8px;border-radius:18px;background:#fff;box-shadow:0 12px 30px #020c1f42,0 0 28px #55b9ff24;transition:transform .2s ease,box-shadow .2s ease}
+.contact-qr:hover{transform:translateY(-3px);box-shadow:0 15px 38px #020c1f5c,0 0 34px #55b9ff42}
+.contact-qr:focus-visible{outline:3px solid var(--lime);outline-offset:5px}
+.contact-qr>.contact-qr-code{display:block;position:relative;z-index:0;width:100%;height:auto}
+.contact-qr-brand{position:absolute;z-index:2;left:50%;top:50%;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:0 3px 10px #153e662b;transform:translate(-50%,-50%)}
+.contact-qr-brand img{display:block;width:31px;height:31px}
+.contact-setter-copy>span{display:block;color:var(--lime);font-size:9px;font-weight:700;letter-spacing:.13em}
+.contact-setter-copy h3{margin:8px 0;font-size:21px;line-height:1.15}
+.contact-setter>.setter-contact-form{grid-column:1/-1;width:100%;max-width:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 56px;align-items:start;column-gap:16px}.setter-contact-form{display:grid;gap:11px;margin-top:0}.setter-send{display:grid;place-items:center;width:56px;min-height:44px;margin-top:22px;padding:0;border:0;background:transparent;color:#61baff;cursor:pointer}.setter-send svg{width:31px;height:31px;fill:currentColor;filter:drop-shadow(0 5px 12px #54adff55)}.setter-send:hover{color:#a6d9ff;transform:translate(2px,-2px)}.setter-send:focus-visible{outline:2px solid var(--lime);outline-offset:4px;border-radius:8px}.setter-contact-form .form-status,.setter-contact-form small{grid-column:1/-1}
+.setter-contact-form label{display:grid;gap:6px;text-align:left}
+.phone-input-group{display:flex;align-items:center;gap:8px}.country-picker{position:relative;z-index:8;flex:none}.country-picker summary{display:flex;align-items:center;gap:7px;width:88px;height:44px;padding:0 8px;list-style:none;border:1px solid #8ac8ff30;border-radius:8px;background:#081b3355;color:var(--fg);font-size:13px;cursor:pointer}.country-picker summary::-webkit-details-marker{display:none}.country-picker summary::after{content:'⌄';margin-left:auto;color:var(--muted);font-size:15px}.country-picker[open] summary{border-color:var(--lime)}.country-picker[open] summary::after{transform:rotate(180deg)}.country-options{position:absolute;right:0;bottom:calc(100% + 8px);display:grid;width:194px;max-height:232px;overflow:auto;padding:6px;border:1px solid #8ac8ff4d;border-radius:10px;background:#102743;box-shadow:0 16px 42px #020a17a8}.country-options button{display:grid;grid-template-columns:20px 1fr auto;align-items:center;gap:9px;min-height:34px;padding:6px 8px;border:0;border-radius:6px;background:transparent;color:#eef7ff;text-align:left;font:12px var(--font);cursor:pointer}.country-options button:hover,.country-options button[aria-pressed=true]{background:#80c8ff1c}.country-options b{font-weight:500;color:var(--lime)}.country-flag{position:relative;width:20px;height:14px;flex:none;border-radius:2px;box-shadow:0 0 0 1px #d6eaff55;background:linear-gradient(#f5cf35 0 33%,#1e4c9b 33% 66%,#c63843 66%)}.country-flag[data-country="57"]{background:linear-gradient(#f5cf35 0 50%,#224c9a 50% 75%,#c63843 75%)}.country-flag[data-country="52"]{background:linear-gradient(90deg,#16734b 0 33%,#f7f8f7 33% 66%,#c73f46 66%)}.country-flag[data-country="1"]{background:repeating-linear-gradient(#c63d4b 0 1px,#f7f8f7 1px 2px)}.country-flag[data-country="1"]::before{content:'';position:absolute;left:0;top:0;width:9px;height:8px;background:radial-gradient(circle at 2px 2px,#fff 0 1px,transparent 1.1px),radial-gradient(circle at 5px 4px,#fff 0 1px,transparent 1.1px),#23467e}.country-flag[data-country="54"]{background:linear-gradient(#81c8ea 0 33%,#f7f8f7 33% 66%,#81c8ea 66%)}.country-flag[data-country="56"]{background:linear-gradient(#f7f8f7 0 50%,#cf3c4a 50%)}.country-flag[data-country="51"]{background:linear-gradient(90deg,#c63b4a 0 33%,#f7f8f7 33% 66%,#c63b4a 66%)}.country-flag[data-country="34"]{background:linear-gradient(#c63b4a 0 25%,#f4d13b 25% 75%,#c63b4a 75%)}.phone-input-group input{min-width:0;flex:1}
+.setter-contact-form input{min-height:44px}
+.setter-contact-form small{display:block;color:#8fa8c2;font-size:9px;line-height:1.45}
+.setter-contact-form .form-status{margin:0}
+@media(max-width:980px){.contact-setter-card{grid-template-columns:135px minmax(0,1fr)}.contact-setter>.setter-contact-form{grid-template-columns:1fr 1fr}.contact-setter>.setter-contact-form .setter-send{grid-column:1/-1;margin-top:0;justify-self:start}}
+@media(max-width:540px){.contact-setter{gap:24px;padding:26px 20px}.contact-setter h2{max-width:none}.contact-setter-intro{display:block}.contact-setter-message{padding-top:14px}.contact-setter>.setter-contact-form{grid-template-columns:1fr}.contact-setter>.setter-contact-form .setter-send{grid-column:auto;margin-top:0}.contact-setter-card{grid-template-columns:1fr;margin-top:0;padding:17px}.contact-qr{width:min(68vw,210px);justify-self:center}.contact-setter-copy{text-align:center}.contact-setter-copy .button{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.contact-qr{transition:none}.contact-qr:hover{transform:none}}
+
+/* En móvil, dos bloques densos se abren solo cuando el visitante los pide. */
+.mobile-section-toggle{display:none}
+@media(max-width:620px){.mobile-section-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;margin-top:17px;padding:11px 14px;border:1px solid #8bcaff4a;border-radius:10px;background:#11263d;color:#eef7ff;font:650 12px/1.3 var(--font);text-align:left}.mobile-section-toggle b{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#76c4ff16;color:var(--lime);font-size:18px}.mobile-section-toggle:focus-visible{outline:2px solid var(--lime);outline-offset:4px}.mobile-section-content:not(.is-open){display:none}.weekly .mobile-section-toggle{margin-bottom:4px}.experience .mobile-section-toggle{margin-bottom:12px}}
+
+/* Panel lateral: riel de iconos (Soluciones / Casos / Estudio) */
+.tabbed{display:grid;grid-template-columns:48px minmax(0,1fr);gap:22px;align-items:start;padding-block:36px}
+.tabbed .shell{width:auto;margin:0}.tabbed .tab-panels>section{padding-top:0}
+.tabbed .tab-panels>section[hidden]{display:none}
+.side-tabs{position:sticky;top:90px;display:flex;flex-direction:column;gap:8px}
+.side-tabs button{position:relative;display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid #8ac8ff33;border-radius:12px;background:#0b1c32a8;color:#9fc4ee;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.side-tabs svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.side-tabs button:hover{border-color:#8ac8ff77;color:#fff}
+.side-tabs button[aria-selected=true]{background:linear-gradient(110deg,#1d3a59,#132640);border-color:var(--lime);color:#fff;box-shadow:inset 3px 0 0 var(--lime)}
+.side-tabs button:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+.side-tabs button::after{content:attr(data-label);position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);padding:6px 10px;border-radius:8px;background:#0b1c32;border:1px solid #8ac8ff55;color:#fff;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
+.side-tabs button:hover::after,.side-tabs button:focus-visible::after{opacity:1}
+@media(max-width:860px){.tabbed{grid-template-columns:1fr;gap:14px}.side-tabs{position:static;flex-direction:row;gap:8px}.side-tabs button::after{left:50%;top:calc(100% + 6px);transform:translateX(-50%)}}
+
+.tabbed:not(:has([role=tabpanel]:not([hidden]))){padding-block:14px}
+
+/* QR del Setter: más grande, logo ya incluido en la imagen */
+.contact-setter-card{grid-template-columns:minmax(180px,210px) minmax(0,1fr)}
+.contact-qr{padding:12px;border-radius:20px}
+.contact-qr-brand{display:none}
+@media(max-width:540px){.contact-setter-card{grid-template-columns:1fr}.contact-qr{width:min(72vw,240px)}}
+@media(max-width:1000px){.contact-setter-card{grid-template-columns:1fr;justify-items:center;text-align:center}.contact-qr{width:min(60vw,220px)}}
+/* QR compacto y fluido: el PNG ya trae su tarjeta, sombra y logo */
+.contact-setter-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(8px,1.5vw,14px);margin-top:clamp(12px,2vw,24px);padding:clamp(8px,1.4vw,12px);border-radius:16px;max-width:100%}
+.contact-qr{flex:0 0 auto;width:clamp(112px,13vw,150px);padding:0;border-radius:0;background:none;box-shadow:none}
+.contact-qr:hover{box-shadow:none;transform:scale(1.03)}
+.contact-qr>.contact-qr-code{width:100%;height:auto;aspect-ratio:1}
+.contact-setter-copy{flex:1 1 120px;min-width:0;text-align:left}
+.contact-setter-copy h3{font-size:clamp(.85rem,1.2vw,1rem);line-height:1.3;margin:4px 0 0}
+@media(max-width:1000px){.contact-setter-card{flex-direction:row;justify-items:initial}.contact-qr{width:clamp(104px,26vw,140px)}}
+@media(max-width:540px){.contact-setter-card{justify-content:flex-start}.contact-qr{width:clamp(96px,30vw,128px);justify-self:auto}.contact-setter-copy{text-align:left}}
+.about-principles article,.about-principles article:hover{grid-template-columns:minmax(0,1fr)}
